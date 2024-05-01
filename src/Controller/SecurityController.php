@@ -55,6 +55,16 @@ class SecurityController extends AbstractController
                         type: "string",
                         example: "Mot de Passe"
                     ),
+                    new Property(
+                        property: "first_name",
+                        type: "string",
+                        example: "Jean"
+                    ),
+                    new Property(
+                        property: "last_name",
+                        type: "string",
+                        example: "Fontaine"
+                    )
                    ]))]
         )
 )]
@@ -71,7 +81,7 @@ class SecurityController extends AbstractController
                 new Property(
                     property: "apiToken",
                     type: "string",
-                    example: " 2d15f2re15621dfr5g1g51h215h147f45h12"
+                    example: " 8c4801550ee8f840b931"
                 ),
                 new Property(
                     property: "roles",
@@ -136,7 +146,7 @@ class SecurityController extends AbstractController
                 new Property(
                     property: "apiToken",
                     type: "string",
-                    example: "2d15f2re15621dfr5g1g51h215h147f45h12"
+                    example: "8c4801550ee8f840b931"
                 ),
                 new Property(
                     property: "roles",

@@ -3,6 +3,11 @@
 namespace App\Controller;
 
 use DateTimeImmutable;
+use OpenApi\Attributes\Items;
+use OpenApi\Attributes\MediaType;
+use OpenApi\Attributes\Property;
+use OpenApi\Attributes\RequestBody;
+use OpenApi\Attributes\Schema;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Restaurant;
 use App\Repository\RestaurantRepository;
@@ -14,6 +19,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
+use OpenApi\Attributes as OA;
 
 
 #[Route('api/restaurant', name: 'app_api_restaurant_')]
@@ -29,6 +35,54 @@ class RestaurantController extends AbstractController
 
 
     #[Route(methods: 'POST')]
+
+    #[OA\Post(
+        path:"/api/restaurant",
+        summary: "Inscription d'un nouveau restaurant",
+        requestBody: new RequestBody(
+            required: true,
+            description: "Données du restaurant à inscrire",
+            content: [new MediaType('application/json',
+                schema: new schema(type: "object", properties: [new Property(
+                    property: "name",
+                    type: "string",
+                    example: "Les délices d'Ulysse"
+                ),
+                    new Property(
+                        property: "description",
+                        type: "string",
+                        example: "Un repas prés du soleil!"
+                    )
+                ]))]
+        )
+    )]
+
+    #[OA\Response(
+        response: 200,
+        description: "Restaurant créer avec succès",
+        content: [new MediaType('application/json',
+            schema: new schema(type: "object", properties: [new Property(
+                property: "id",
+                type: "int",
+                example: "1",
+            ),
+                new Property(
+                    property: "name",
+                    type: "string",
+                    example: "Les délices d'Ulysse"
+                ),
+                new Property(
+                    property: "description",
+                    type: "String",
+                    example: "Un repas d'Ulysse"
+                ),
+                new Property(
+                    property: "created_at",
+                    type: "string",
+                    format: "Y-m-d H:i:s",
+                )
+            ]))])]
+
     public function new(Request $request): JsonResponse
     {
         $restaurant = $this->serializer->deserialize($request->getContent(), Restaurant::class, 'json');

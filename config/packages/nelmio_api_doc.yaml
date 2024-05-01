@@ -12,7 +12,7 @@ nelmio_api_doc:
             securitySchemes:
                 X-AUTH-TOKEN:
                     type: apiKey
-                    name: Key
+                    name: X-AUTH-TOKEN
                     in: header
             security:
                 - X-AUTH-TOKEN: []

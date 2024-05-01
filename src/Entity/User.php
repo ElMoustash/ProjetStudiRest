@@ -57,7 +57,7 @@ class  User implements UserInterface, PasswordAuthenticatedUserInterface
     /** @throws \Exception */
     public function __construct()
     {
-        $this->apiToken = bin2hex(random_bytes(32));
+        $this->apiToken = bin2hex(random_bytes(20));
     }
 
     public function getId(): ?int
