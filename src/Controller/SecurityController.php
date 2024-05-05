@@ -151,7 +151,7 @@ class SecurityController extends AbstractController
                 new Property(
                     property: "roles",
                     type: "array",
-                    items: new Items(type: "string",example: "ROLE_USER"))
+                    items: new Items(type: "string",example:"ROLE_USER"))
             ]))])]
     public function login(#[CurrentUser] ?User $user): JsonResponse
     {
